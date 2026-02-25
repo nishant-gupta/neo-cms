@@ -6,6 +6,7 @@
 - [V1 Execution Backlog](./V1_EXECUTION_BACKLOG.md)
 - [EPIC-1 / US-1.1 implementation notes](./docs/epics/EPIC-1-US-1.1.md)
 - [EPIC-1 / US-1.2 implementation notes](./docs/epics/EPIC-1-US-1.2.md)
+- [EPIC-1 / US-1.3 implementation notes](./docs/epics/EPIC-1-US-1.3.md)
 
 ## EPIC-1 progress
 
@@ -25,3 +26,11 @@ Implemented API authentication baseline:
 - FastAPI application scaffold in [`app/main.py`](./app/main.py)
 - Google OAuth verification + RBAC in [`app/auth.py`](./app/auth.py)
 - 401/403 role enforcement tests in [`tests/test_auth.py`](./tests/test_auth.py)
+
+### US-1.3 Secure storage and upload paths
+
+Implemented signed upload baseline:
+
+- Signed upload endpoint in [`app/main.py`](./app/main.py)
+- URL generation + mime allow-list enforcement in [`app/assets.py`](./app/assets.py)
+- Endpoint tests in [`tests/test_signed_upload.py`](./tests/test_signed_upload.py)

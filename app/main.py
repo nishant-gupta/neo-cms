@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from fastapi import Depends, FastAPI
 
+from app.assets import SignedUploadUrlRequest, SignedUploadUrlResponse, create_signed_upload_url
 from app.auth import AuthenticatedUser, require_roles
 
 app = FastAPI(title="neo-cms API", version="0.1.0")
@@ -34,3 +35,11 @@ def publisher_ping(
     user: AuthenticatedUser = Depends(require_roles("publisher", "admin")),
 ) -> dict[str, str]:
     return {"message": f"publisher access granted for {user.email}"}
+
+
+@app.post("/api/v1/assets/signed-upload-url", response_model=SignedUploadUrlResponse)
+def signed_upload_url(
+    payload: SignedUploadUrlRequest,
+    user: AuthenticatedUser = Depends(require_roles("editor", "publisher", "admin")),
+) -> SignedUploadUrlResponse:
+    return create_signed_upload_url(payload)
