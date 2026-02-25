@@ -1,0 +1,10 @@
+project_id         = "your-gcp-project-id"
+environment        = "dev"
+region             = "us-central1"
+bucket_location    = "US"
+firestore_location = "us-central"
+create_firestore_database = true
+resource_prefix    = "cms"
+
+api_image    = "us-docker.pkg.dev/your-gcp-project-id/cms/api:latest"
+worker_image = "us-docker.pkg.dev/your-gcp-project-id/cms/worker:latest"
