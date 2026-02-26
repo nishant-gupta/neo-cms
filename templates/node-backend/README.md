@@ -43,6 +43,19 @@ npm start
 npm test
 ```
 
+## Firestore migration (collection bootstrap)
+
+This template includes a lightweight migration script to prepare baseline collections for v1:
+
+```bash
+GCP_PROJECT_ID=<your-gcp-project-id> npm run firestore:migrate
+```
+
+The script creates/updates `_meta` documents in:
+- `pages`
+- `assets`
+- `revisions`
+
 ## API endpoints (starter)
 
 - `GET /healthz`
@@ -88,4 +101,4 @@ docker run -p 8080:8080 --env-file .env neo-cms-api-template
 1. Add page, revision, and publish endpoints from technical design.
 2. Connect Cloud Tasks handlers for preview/publish jobs.
 3. Add CI workflow for test/build/deploy.
-4. Add Terraform provisioning for Firestore, Cloud Run, and Cloud Tasks.
+4. Add Cloud Run image build/publish automation in CI/CD.

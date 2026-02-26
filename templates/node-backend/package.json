@@ -9,7 +9,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "firestore:migrate": "tsx scripts/migrate-firestore.ts"
   },
   "keywords": [
     "nodejs",

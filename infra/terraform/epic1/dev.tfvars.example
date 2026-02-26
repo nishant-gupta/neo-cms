@@ -1,0 +1,14 @@
+project_id                   = "your-gcp-project-id"
+region                       = "us-central1"
+bucket_location              = "US"
+environment                  = "dev"
+name_prefix                  = "neo-cms"
+
+api_image                    = "us-docker.pkg.dev/cloudrun/container/hello:latest"
+worker_image                 = "us-docker.pkg.dev/cloudrun/container/hello:latest"
+
+create_firestore_database    = false
+firestore_location           = "us-central"
+
+allow_unauthenticated_api    = false
+allow_unauthenticated_worker = false
