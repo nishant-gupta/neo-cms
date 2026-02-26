@@ -1,5 +1,7 @@
 # Lightweight, Cost-Effective CMS on Google Cloud
 
+Diagrammatic views are available in [ARCHITECTURE_DIAGRAMS.md](./ARCHITECTURE_DIAGRAMS.md).
+
 ## 1) Goals and Constraints
 
 ### Primary goals
