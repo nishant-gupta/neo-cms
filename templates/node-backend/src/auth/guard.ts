@@ -95,7 +95,7 @@ export function requireRoles(requiredRoles: UserRole[]): preHandlerAsyncHookHand
   return async (request, reply) => {
     try {
       const identity = await authenticateRequest(request.headers.authorization);
-      const role = resolveRoleForEmail(identity.email);
+      const role = config.AUTH_MODE === "disabled" ? "admin" : resolveRoleForEmail(identity.email);
 
       if (!role) {
         return reply.code(403).send({
