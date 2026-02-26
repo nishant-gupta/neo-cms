@@ -14,6 +14,8 @@ Production-ready starter for the neo-cms backend on Cloud Run.
 
 - Security middleware (`@fastify/helmet`)
 - CORS support (`@fastify/cors`)
+- Google OAuth ID token verification support (`google-auth-library`)
+- Role-based access controls for `editor`, `publisher`, `admin`
 - Health and readiness endpoints (`/healthz`, `/readyz`)
 - Centralized error and not-found handlers
 - Graceful shutdown on `SIGTERM`/`SIGINT`
@@ -45,7 +47,9 @@ npm test
 
 - `GET /healthz`
 - `GET /readyz`
-- `POST /api/v1/assets/signed-upload-url`
+- `GET /api/v1/auth/me` (requires `editor+`)
+- `GET /api/v1/admin/access-check` (requires `admin`)
+- `POST /api/v1/assets/signed-upload-url` (requires `editor+`)
 
 Example request body:
 
@@ -56,6 +60,22 @@ Example request body:
 }
 ```
 
+## Authentication and roles
+
+Protected endpoints require `Authorization: Bearer <token>`.
+
+- `AUTH_MODE=google`:
+  - verifies Google ID tokens via OAuth2
+  - enforces role mapping from email lists (`RBAC_*_EMAILS`)
+- `AUTH_MODE=mock` (default outside production):
+  - use mock bearer token format: `Bearer mock:user@example.com`
+  - useful for local development and automated tests
+
+Typical role policy:
+- Editors: upload assets, create and edit drafts
+- Publishers: editor permissions + publish actions
+- Admins: full access
+
 ## Cloud Run container
 
 ```bash
@@ -65,7 +85,7 @@ docker run -p 8080:8080 --env-file .env neo-cms-api-template
 
 ## Suggested next steps
 
-1. Add auth middleware for Google OAuth and role checks.
-2. Add page, revision, and publish endpoints from technical design.
-3. Connect Cloud Tasks handlers for preview/publish jobs.
-4. Add CI workflow for test/build/deploy.
+1. Add page, revision, and publish endpoints from technical design.
+2. Connect Cloud Tasks handlers for preview/publish jobs.
+3. Add CI workflow for test/build/deploy.
+4. Add Terraform provisioning for Firestore, Cloud Run, and Cloud Tasks.

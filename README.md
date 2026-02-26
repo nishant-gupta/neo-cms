@@ -6,6 +6,7 @@
 - [V1 Execution Backlog](./V1_EXECUTION_BACKLOG.md)
 - [Technical Stack (v1)](./TECH_STACK.md)
 - [Minimal Node Backend Template](./templates/node-backend/README.md)
+- [EPIC-1 Terraform Baseline](./infra/terraform/epic1/README.md)
 
 ## Suggested env-setup prompt
 

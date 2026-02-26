@@ -4,6 +4,7 @@ import sensible from "@fastify/sensible";
 import Fastify, { type FastifyBaseLogger } from "fastify";
 import { config } from "./config";
 import { registerAssetRoutes } from "./routes/assets";
+import { registerAuthRoutes } from "./routes/auth";
 import { registerHealthRoutes } from "./routes/health";
 
 export function buildApp(logger?: FastifyBaseLogger) {
@@ -31,6 +32,7 @@ export function buildApp(logger?: FastifyBaseLogger) {
   });
 
   app.register(registerHealthRoutes);
+  app.register(registerAuthRoutes);
   app.register(registerAssetRoutes);
 
   return app;
